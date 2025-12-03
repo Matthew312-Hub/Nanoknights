@@ -1,0 +1,289 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous (name = "StarterNkAuto")
+public class StarterNKAuto extends LinearOpMode {
+
+    protected DcMotor leftFrontMotor;
+    protected DcMotor rightFrontMotor; // Front right motor for the wheel
+    protected DcMotor leftBackMotor;   // Back left motor for the wheel
+    protected DcMotor rightBackMotor;  // Back right motor for the wheel
+    protected CRServo crservo1;
+    protected CRServo crservo2;
+    protected CRServo crservo3;
+    protected CRServo crservo4;
+    protected DcMotor shooterMotor;
+    protected CRServo backup;
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+
+        this.leftFrontMotor = hardwareMap.get(DcMotor.class, "leftFrontMotor");
+        rightFrontMotor = hardwareMap.get(DcMotor.class, "rightFrontMotor");
+        leftBackMotor = hardwareMap.get(DcMotor.class, "leftBackMotor");
+        rightBackMotor = hardwareMap.get(DcMotor.class, "rightBackMotor");  //PROBLEM
+        crservo1 = hardwareMap.get(CRServo.class, "crservo1");
+        crservo2 = hardwareMap.get(CRServo.class, "crservo2");
+        crservo3 = hardwareMap.get(CRServo.class, "crservo3");
+        crservo4 = hardwareMap.get(CRServo.class, "crservo4");
+        shooterMotor = hardwareMap.get(DcMotor.class, "shooterMotor");
+        backup = hardwareMap.get(CRServo.class, "backup5");
+
+        leftFrontMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBackMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        shooterMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        waitForStart();
+
+        leftFrontMotor.setPower(1);
+        leftBackMotor.setPower(1);
+        rightFrontMotor.setPower(-1);
+        rightBackMotor.setPower(-1);
+        sleep(110);
+
+        leftFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);
+
+        leftFrontMotor.setPower(-1);
+        rightFrontMotor.setPower(-1);
+        leftBackMotor.setPower(-1);
+        rightBackMotor.setPower(-1);
+        sleep(600);
+
+        leftFrontMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);//check
+
+        leftFrontMotor.setPower(1);
+        leftBackMotor.setPower(1);
+        rightFrontMotor.setPower(-1);
+        rightBackMotor.setPower(-1);
+        sleep(440);
+
+        leftFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);
+
+        shooterMotor.setPower(0.7);
+        sleep(3000);
+
+        crservo1.setPower(1);
+        crservo2.setPower(1);
+        backup.setPower(-1);
+        crservo3.setPower(-1);
+        crservo4.setPower(1);
+        sleep(5000);
+
+        shooterMotor.setPower(0);
+        crservo3.setPower(0);
+        crservo4.setPower(0);
+        crservo1.setPower(0);
+        crservo2.setPower(0);
+        backup.setPower(0);
+        sleep(10);
+//change
+        crservo1.setPower(1);
+        crservo2.setPower(1);
+        backup.setPower(-1);
+        sleep(5000);
+
+        leftFrontMotor.setPower(1);
+        leftBackMotor.setPower(1);
+        rightFrontMotor.setPower(-1);
+        rightBackMotor.setPower(-1);
+        sleep(110);
+
+        leftFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);
+
+        leftFrontMotor.setPower(-1);
+        leftBackMotor.setPower(-1);
+        rightFrontMotor.setPower(-1);
+        rightBackMotor.setPower(-1);
+        sleep(500);
+
+        leftFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);
+
+        leftFrontMotor.setPower(-1);
+        leftBackMotor.setPower(-1);
+        rightFrontMotor.setPower(1);
+        rightBackMotor.setPower(1);
+        sleep(110);
+
+        leftFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);
+
+        crservo1.setPower(1);
+        crservo2.setPower(1);
+        backup.setPower(-1);
+        crservo3.setPower(-1);
+        crservo4.setPower(1);
+        sleep(5000);
+
+        shooterMotor.setPower(0);
+        crservo3.setPower(0);
+        crservo4.setPower(0);
+        crservo1.setPower(0);
+        crservo2.setPower(0);
+        backup.setPower(0);
+        sleep(10);
+
+        leftFrontMotor.setPower(-1);
+        leftBackMotor.setPower(-1);
+        rightFrontMotor.setPower(-1);
+        rightBackMotor.setPower(-1);
+        sleep(310);
+
+        leftFrontMotor.setPower(0);
+        leftBackMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightBackMotor.setPower(0);
+        sleep(10);
+
+    }
+}
+
+//        leftFrontMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        leftBackMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep(10);
+//
+//        leftFrontMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        leftBackMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep(10);
+//
+//        crservo1.setPower(1);
+//        crservo2.setPower(1);
+//        backup.setPower(1);
+//        sleep(5000);
+//
+//        crservo1.setPower(0);
+//        crservo2.setPower(0);
+//        backup.setPower(0);
+//        sleep(2000);
+//
+//        leftFrontMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        leftBackMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep(2000);
+//
+//        crservo1.setPower(1);
+//        crservo2.setPower(1);
+//        sleep();
+//
+//        crservo1.setPower(1);
+//        crservo2.setPower(1);
+//        sleep();
+//
+//        leftFrontMotor.setPower(-1);
+//        rightFrontMotor.setPower(-1);
+//        leftBackMotor.setPower(-1);
+//        rightFrontMotor.setPower(-1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep();
+//
+//        leftFrontMotor.setPower(1);//TURN
+//        rightFrontMotor.setPower(1);
+//        leftBackMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep(3000);
+//
+//        leftFrontMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        leftBackMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep();
+//
+//        leftFrontMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        leftBackMotor.setPower(1);
+//        rightFrontMotor.setPower(1);
+//        sleep(1000);
+//
+//        leftFrontMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        leftBackMotor.setPower(0);
+//        rightFrontMotor.setPower(0);
+//        sleep();
+//
+//        shooterMotor.setPower(0.8);
+//        sleep(2000);
+//
+//        crservo3.setPower(-1);
+//        crservo4.setPower(1);
+//        sleep(3000);
+//
+//        shooterMotor.setPower(0);
+//        crservo3.setPower(0);
+//        crservo4.setPower(0);
+//        sleep();
+//
+//        // INFO
+////4 Balls = At Least 14 Points
+////Leave Starting Area = 3 Points
+////At Least 17 Points
+//// Max = 23 points
+//    }
+//}
