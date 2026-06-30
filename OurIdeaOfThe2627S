@@ -1,1 +1,113 @@
+package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
+
+@TeleOp(name = "StarterNK3Persons", group = "Examples")
+public class combine2 extends LinearOpMode {
+
+    // Declare the four motors: two front and two back
+    private DcMotor leftFrontMotor;  // Front left motor for the wheel
+    private DcMotor rightFrontMotor; // Front right motor for the wheel
+    private DcMotor leftBackMotor;   // Back left motor for the wheel
+    private DcMotor rightBackMotor;  // Back right motor for the wheel
+    private DcMotor LeftSlide;
+    private DcMotor RightSlide;
+    private DcMotor Intake;
+
+    @Override
+    public void runOpMode() {
+        // Initialize the motors from the hardware map
+        // These names should match the configuration in the FTC Robot Controller app
+        leftFrontMotor = hardwareMap.get(DcMotor.class, "leftFrontMotor");  // Assuming config name "left_front"
+        rightFrontMotor = hardwareMap.get(DcMotor.class, "rightFrontMotor"); // Assuming config name "right_front"
+        leftBackMotor = hardwareMap.get(DcMotor.class, "leftBackMotor");     // Assuming config name "left_back"
+        rightBackMotor = hardwareMap.get(DcMotor.class, "rightBackMotor");   // Assuming config name "right_back"
+        LeftSlide = hardwareMap.get(DcMotor.class, "LeftSlide");
+        RightSlide = hardwareMap.get(DcMotor.class, "RightSlide");
+        Intake = hardwareMap.get(DcMotor.class, "Intake");
+
+
+        // Set motor directions (adjust based on your robot's wiring)
+        leftFrontMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);  // Often reversed for right side
+        leftBackMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        LeftSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+        RightSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+        Intake.setDirectiom(DcMotorSimple.Direction.REVERSE);
+
+
+        // Set all motors to run without encoders for basic control
+        leftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightBackMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        // Wait for the driver to press PLAY
+        waitForStart();
+
+        // Initialize state for CRServo toggle
+//        double currentPower = 1.0; // Start at 0.0 (stopped)
+
+        // Main loop for TeleOp control
+        while (opModeIsActive()) {
+            // Set power to the motors
+            // For tank drive, front and back on each side get the same power
+            // Put loop blocks here.
+            if (gamepad1.right_stick_y != 0 || gamepad1.right_stick_x != 0 || gamepad1.left_stick_x != 0) {
+                double r = Math.hypot(gamepad1.right_stick_x, gamepad1.right_stick_y);
+                double robotAngle = Math.atan2(gamepad1.right_stick_y, gamepad1.right_stick_x) - Math.PI / 4;
+                double turn = -gamepad1.left_stick_x;
+                double rightX = turn * turn * turn;
+                final double v1 = (r * Math.cos(robotAngle) + rightX);
+                final double v2 = (r * Math.sin(robotAngle) - rightX);
+                final double v3 = (r * Math.sin(robotAngle) + rightX);
+                final double v4 = (r * Math.cos(robotAngle) - rightX);
+                leftBackMotor.setPower(-v1 * -0.8);
+                rightBackMotor.setPower(-v2 * -0.8);
+                leftFrontMotor.setPower(-v3 * -0.8);
+                rightFrontMotor.setPower(-v4 * -0.8);
+
+                telemetry.addData("LF", v3 * .25);
+                telemetry.addData("RF", v4 * .25);
+                telemetry.addData("LB", v1 * .25);
+                telemetry.addData("RB", v2 * .25);
+                telemetry.update();
+            } else {
+                leftFrontMotor.setPower(0);
+                leftBackMotor.setPower(0);
+                rightFrontMotor.setPower(0);
+                rightBackMotor.setPower(0);
+            }
+
+            // CRServo toggle with button A
+            if (gamepad2.left_trigger >= 0.2) {
+                Intake.setPower(1);
+            }
+            else {
+                Intake.setPower(0);
+            }
+            if (gamepad2.right_trigger >= 0.2) {
+                Intake.setPower(-1);
+            }
+            else {
+                Intake.setPower(0);
+            }
+            if (gamepad2.dpad_up) {
+                LeftSlide.setPower(1);//CHANGE TO THE ROBOT
+                RightSlide.setPower(1);
+            }
+            if (gamepad2.dpad_down) {
+                LeftSlide.setPower(1);//CHANGE TO THE ROBOT
+                RightSlide.setPower(1);
+            }
+            // Idle to prevent high CPU usage (optional, but good practice)
+            idle();
+        }
+    }
+}
